@@ -41,10 +41,31 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "hero_banner_NEb8wC": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_type": "video",
+        "image_background": "shopify://shop_images/pexels-michael-steinberg-95604-342945.jpg",
+        "video_background_hosted": "shopify://files/videos/f793e3f8d00d4cc58fd782ff59d819c9.mp4",
+        "video_background_url": "",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "text_color": "#FFFFFF",
+        "stars_text": "Trusted By 30,539+ Players",
+        "heading": "END OF SEASON SALE",
+        "subheading": "Pro level protection for every level",
+        "button_text": "SAVE OVER 30%",
+        "button_link": "",
+        "show_endorsement": true,
+        "endorsement_name": "TJ Oshie"
+      }
     }
   },
   "order": [
     "announcement_bar",
-    "header"
+    "header",
+    "hero_banner_NEb8wC"
   ]
 }
