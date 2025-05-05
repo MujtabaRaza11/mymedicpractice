@@ -7,16 +7,8 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "settings": {
-        "text": "Summer Sale! Up To 50% OFF + FREE Gifts",
-        "text_color": "#ffffff",
-        "background_color": "#ff0000"
-      }
-    },
     "hero_banner_1": {
       "type": "hero-banner",
       "settings": {
@@ -26,12 +18,13 @@
         "overlay_color": "#000000",
         "overlay_opacity": 30,
         "text_color": "#ffffff",
-        "stars_text": "SAVE UP TO 50% OFF",
-        "heading": "Summer Sale",
-        "subheading": "Earn up to $100 in free gifts + free shipping",
-        "button_text": "SHOP NOW",
-        "button_link": "/collections/all",
-        "show_endorsement": false
+        "stars_text": "Trusted By 30,539+ Players",
+        "heading": "END OF SEASON SALE",
+        "subheading": "Pro level protection for every level",
+        "button_text": "SAVE OVER 30%",
+        "button_link": "shopify://collections/cam-plans",
+        "show_endorsement": false,
+        "endorsement_name": "TJ Oshie"
       }
     },
     "icon_bar_1": {
@@ -538,7 +531,6 @@
     }
   },
   "order": [
-    "announcement-bar",
     "hero_banner_1",
     "icon_bar_1",
     "featured_products_example",
