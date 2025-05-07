@@ -1,0 +1,333 @@
+<style>
+  #main-header .nav-megamenu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    margin-top: 1px;
+  }
+  #main-header .nav-megamenu .page-width {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    align-items: stretch;
+    padding: 30px 20px;
+    gap: 30px;
+    max-width: 100%;
+  }
+  #main-header .nav-megamenu .menu-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 160px;
+    max-width: 250px;
+    flex: 1;
+    position: relative;
+    padding-left: 20px;
+  }
+  #main-header .nav-megamenu .menu-column::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+  #main-header .nav-megamenu .menu-column:last-child::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+  #main-header .nav-megamenu .menu-item {
+    width: 100%;
+  }
+
+  #main-header .nav-megamenu .nav-megamenu_child {
+    position: static;
+    margin-top: 10px;
+    display: block;
+  }
+  #main-header .nav-megamenu_heading {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #main-header .nav-megamenu_heading img.menu-icon {
+    max-width: 20px;
+    height: auto;
+    object-fit: contain;
+  }
+  #main-header .nav-megamenu_child a {
+    display: block;
+    padding: 6px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  #main-header .menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #main-header .menu-toggle img.menu-icon,
+  #main-header nav a > img.menu-icon {
+    max-width: 20px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* Preview column styles */
+  #main-header .nav-megamenu .preview-column {
+    width: 183px;
+    flex: 0 0 183px;
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #main-header .nav-megamenu .preview-column::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+  #main-header .nav-megamenu .preview-column::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+  #main-header .nav-megamenu .preview-image {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  #main-header .nav-megamenu .preview-image.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  #main-header .nav-megamenu_column-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  #main-header nav a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Add hover styles for main links */
+  #main-header > ul > li > a:hover {
+    color: #ed1b24;
+  }
+  
+  /* Add hover styles for childlinks with no sublinks */
+  #main-header .nav-megamenu_quick-links a:hover {
+    color: #ed1b24;
+  }
+  
+  /* Add hover styles for grandchild links */
+  #main-header .nav-megamenu_child a:hover {
+    color: #ed1b24;
+  }
+  @media (max-width: 768px) {
+    #main-header .menu-toggle {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<ul>
+  {% for link in section.settings.menu.links %}
+    <li x-data="{ menuOpen: false }" @click.outside="menuOpen = false">
+      {% if link.links != blank %}
+        <a
+          @click="menuOpen = !menuOpen"
+          :class="{ 'menu-open': menuOpen }"
+          class="menu-toggle"
+        >
+          {% for block in section.blocks %}
+            {% if block.type == 'menu_icon' and block.settings.menu_title == link.title %}
+              {% if block.settings.icon %}
+                <img src="{{ block.settings.icon | img_url: '20x20' }}" alt="" class="menu-icon" width="20" height="20">
+              {% endif %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {{- link.title | escape -}}
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </a>
+        <div x-show="menuOpen" x-transition x-cloak class="nav-megamenu color-{{ section.settings.menu_color_scheme }} gradient">
+          <ul class="page-width" role="list" x-data="{ activeCategory: '{% for firstlink in link.links %}{% if firstlink.links != blank %}{{ firstlink.title | escape | handleize }}{% break %}{% endif %}{% endfor %}' }">
+            {% comment %} First, analyze links to organize them into columns {% endcomment %}
+            {% assign child_links = link.links %}
+            {% assign current_column = 0 %}
+            {% assign items_in_column = 0 %}
+            {% assign links_in_column = 0 %}
+
+            {% comment %} First column - items with no sublinks {% endcomment %}
+            <div class="menu-column">
+              <ul class="nav-megamenu_quick-links" role="list">
+                {% for childlink in child_links %}
+                  {% if childlink.links == blank %}
+                    <li class="menu-item"
+                        @mouseenter="activeCategory = '{{ childlink.title | escape | handleize }}'"
+                        @mouseleave="activeCategory = ''"
+                    >
+                      <a
+                        href="{{ childlink.url }}"
+                        class="nav-megamenu_heading"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {% for block in section.blocks %}
+                          {% if block.type == 'menu_icon' and block.settings.menu_title == childlink.title %}
+                            {% if block.settings.icon %}
+                              <img src="{{ block.settings.icon | img_url: '20x20' }}" alt="" class="menu-icon" width="20" height="20">
+                            {% endif %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                        {{ childlink.title | escape }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+
+            {% comment %} Start a column for items with sublinks {% endcomment %}
+            <div class="menu-column">
+              <ul class="nav-megamenu_submenu-links" role="list">
+                {% for childlink in child_links %}
+                  {% if childlink.links != blank %}
+                    {% assign sublink_count = childlink.links.size %}
+
+                    {% comment %} Decide if we need a new column {% endcomment %}
+                    {% assign total_items = items_in_column | plus: sublink_count %}
+                    {% if links_in_column > 0 and items_in_column > 0 and total_items > 9 %}
+                      {% comment %} Close previous column and start a new one {% endcomment %}
+                      {% assign items_in_column = 0 %}
+                      {% assign links_in_column = 0 %}
+                      </ul>
+                      </div>
+                      <div class="menu-column">
+                      <ul class="nav-megamenu_submenu-links" role="list">
+                    {% endif %}
+
+                    {% comment %} Add the item to the current column {% endcomment %}
+                    <li class="menu-item" 
+                        @mouseenter="activeCategory = '{{ childlink.title | escape | handleize }}'"
+                        @mouseleave="activeCategory = ''"
+                    >
+                      <a
+                        href="{{ childlink.url }}"
+                        class="nav-megamenu_heading"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {% for block in section.blocks %}
+                          {% if block.type == 'menu_icon' and block.settings.menu_title == childlink.title %}
+                            {% if block.settings.icon %}
+                              <img src="{{ block.settings.icon | img_url: '20x20' }}" alt="" class="menu-icon" width="20" height="20">
+                            {% endif %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                        {{ childlink.title | escape }}
+                      </a>
+                      
+                      {% if childlink.links != blank %}
+                        <ul class="nav-megamenu_child" role="list">
+                          {% for grandchildlink in childlink.links %}
+                            <li>
+                              <a
+                                href="{{ grandchildlink.url }}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+
+                    {% comment %} Update column counters {% endcomment %}
+                    {% assign items_in_column = items_in_column | plus: sublink_count | plus: 1 %}
+                    {% assign links_in_column = links_in_column | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            
+            {% comment %} Add the preview column {% endcomment %}
+            <div class="preview-column">
+              {% for childlink in child_links %}
+                {% for block in section.blocks %}
+                  {% if block.type == 'menu_icon' and block.settings.menu_title == childlink.title %}
+                    {% if block.settings.icon %}
+                      <img 
+                        src="{{ block.settings.icon | img_url: '183x' }}" 
+                        alt="" 
+                        class="preview-image" 
+                        :class="{ 'active': activeCategory === '{{ childlink.title | escape | handleize }}' }"
+                        width="183" 
+                        height="auto">
+                    {% endif %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </div>
+            
+          </ul>
+        </div>
+      {% else %}
+        <a
+          href="{{ link.url }}"
+          {% if link.current %}
+            aria-current="page"
+          {% endif %}
+        >
+          {% for block in section.blocks %}
+            {% if block.type == 'menu_icon' and block.settings.menu_title == link.title %}
+              {% if block.settings.icon %}
+                <img src="{{ block.settings.icon | img_url: '20x20' }}" alt="" class="menu-icon" width="20" height="20">
+              {% endif %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {{- link.title | escape -}}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
