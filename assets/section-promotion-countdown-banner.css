@@ -1,0 +1,426 @@
+.promotion-countdown-section {
+  position: relative;
+  width: 100%;
+  --image-overlay-opacity: 0.2;
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+  --label-color: #ffffff;
+  
+  --heading-font-size: 38px;
+  --heading-font-weight: 700;
+  --heading-color: #ffffff;
+  
+  --subheading-font-size: 16px;
+  --subheading-font-weight: 400;
+  --subheading-color: #ffffff;
+  
+  --timer-font-size: 28px;
+  --timer-label-font-size: 10px;
+  --timer-color: #ffffff;
+  
+  --button-padding-v: 12px;
+  --button-padding-h: 24px;
+  --button-font-size: 14px;
+  --button-font-weight: 700;
+  --button-text-color: #ffffff;
+  --button-bg-color: #e52e2e;
+  --button-hover-bg-color: #c42020;
+  
+  --mobile-label-font-size: 12px;
+  --mobile-heading-font-size: 28px;
+  --mobile-subheading-font-size: 14px;
+  --mobile-timer-font-size: 22px;
+  --mobile-timer-label-font-size: 8px;
+  --mobile-button-font-size: 12px;
+  
+  /* Font settings */
+  font-family: 'Poppins', sans-serif;
+  
+  /* Calculate RGBA value for overlay */
+  --overlay-color: rgba(0, 0, 0, var(--image-overlay-opacity));
+}
+
+/* Apply font family to all elements within the section */
+.promotion-countdown-section *,
+.promotion-countdown-section h2,
+.promotion-countdown-section p,
+.promotion-countdown-section div,
+.promotion-countdown-section a,
+.promotion-countdown-section span {
+  font-family: 'Poppins', sans-serif;
+}
+
+.promotion-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.promotion-banner.full-width {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.promotion-banner__image-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 33.33%; /* Aspect ratio for desktop (adjust as needed) */
+  overflow: hidden;
+}
+
+.promotion-banner__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.promotion-banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Background color is set inline in the HTML */
+  z-index: 1;
+  pointer-events: none; /* Allow clicks to pass through the overlay */
+}
+
+.promotion-banner__image-mobile {
+  display: none;
+}
+
+.promotion-banner__content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 30px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* Content positioning classes */
+.promotion-position-top-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.promotion-position-top-center {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.promotion-position-top-right {
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.promotion-position-middle-left {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.promotion-position-middle-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.promotion-position-middle-right {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.promotion-position-bottom-left {
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.promotion-position-bottom-center {
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.promotion-position-bottom-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.promotion-banner__content-wrapper {
+  max-width: 450px;
+  color: var(--heading-color);
+  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Text alignment classes */
+.content-alignment-left {
+  text-align: left;
+}
+
+.content-alignment-center {
+  text-align: center;
+}
+
+.content-alignment-right {
+  text-align: right;
+}
+
+.promotion-banner__label {
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  color: var(--label-color);
+  text-transform: uppercase;
+  margin: 0 0 5px;
+  letter-spacing: 1px;
+}
+
+.promotion-banner__heading {
+  font-size: var(--heading-font-size);
+  font-weight: var(--heading-font-weight);
+  color: var(--heading-color);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.promotion-banner__subheading {
+  font-size: var(--subheading-font-size);
+  font-weight: var(--subheading-font-weight);
+  color: var(--subheading-color);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.promotion-banner__countdown {
+  margin-bottom: 25px;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content-alignment-center .countdown-timer {
+  justify-content: center;
+}
+
+.content-alignment-right .countdown-timer {
+  justify-content: flex-end;
+}
+
+.countdown-timer__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.countdown-timer__number {
+  font-size: var(--timer-font-size);
+  font-weight: var(--heading-font-weight);
+  line-height: 1;
+  color: var(--timer-color);
+}
+
+.countdown-timer__label {
+  font-size: var(--timer-label-font-size);
+  font-weight: var(--label-font-weight);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 5px;
+  color: var(--timer-color);
+}
+
+.countdown-timer__separator {
+  font-size: var(--timer-font-size);
+  font-weight: var(--heading-font-weight);
+  line-height: 1;
+  margin-top: -12px;
+  color: var(--timer-color);
+}
+
+.promotion-banner__button-container {
+  display: flex;
+}
+
+.button-position-left {
+  justify-content: flex-start;
+}
+
+.button-position-center {
+  justify-content: center;
+}
+
+.button-position-right {
+  justify-content: flex-end;
+}
+
+.promotion-banner__button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: var(--button-padding-v) var(--button-padding-h);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.promotion-banner__button:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+@media screen and (max-width: 768px) {
+  .promotion-banner__image-container {
+    padding-bottom: 100%; /* Square aspect ratio for mobile (adjust as needed) */
+  }
+  
+  .promotion-banner__image-desktop {
+    display: none;
+  }
+  
+  .promotion-banner__image-mobile {
+    display: block;
+  }
+  
+  .promotion-banner__content-container {
+    padding: 20px;
+  }
+  
+  .promotion-banner__content-wrapper {
+    max-width: 300px;
+  }
+  
+  .promotion-banner__label {
+    font-size: var(--mobile-label-font-size);
+  }
+  
+  .promotion-banner__heading {
+    font-size: var(--mobile-heading-font-size);
+    margin-bottom: 8px;
+  }
+  
+  .promotion-banner__subheading {
+    font-size: var(--mobile-subheading-font-size);
+    margin-bottom: 15px;
+  }
+  
+  .countdown-timer__number {
+    font-size: var(--mobile-timer-font-size);
+  }
+  
+  .countdown-timer__label {
+    font-size: var(--mobile-timer-label-font-size);
+  }
+  
+  .countdown-timer__separator {
+    font-size: var(--mobile-timer-font-size);
+    margin-top: calc(-1 * var(--mobile-timer-font-size) / 3);
+  }
+  
+  .promotion-banner__button {
+    padding: calc(var(--button-padding-v) * 0.8) calc(var(--button-padding-h) * 0.8);
+    font-size: var(--mobile-button-font-size);
+  }
+  
+  /* Mobile-specific positioning classes */
+  .promotion-position-mobile-top-left {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .promotion-position-mobile-top-center {
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .promotion-position-mobile-top-right {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  
+  .promotion-position-mobile-middle-left {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .promotion-position-mobile-middle-center {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .promotion-position-mobile-middle-right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .promotion-position-mobile-bottom-left {
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  
+  .promotion-position-mobile-bottom-center {
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .promotion-position-mobile-bottom-right {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+  /* Mobile-specific text alignment */
+  .content-alignment-mobile-left {
+    text-align: left;
+  }
+  
+  .content-alignment-mobile-center {
+    text-align: center;
+  }
+  
+  .content-alignment-mobile-right {
+    text-align: right;
+  }
+  
+  /* Mobile-specific button positioning */
+  .button-position-mobile-left {
+    justify-content: flex-start;
+  }
+  
+  .button-position-mobile-center {
+    justify-content: center;
+  }
+  
+  .button-position-mobile-right {
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .promotion-banner__content-wrapper {
+    max-width: max-content;
+  }
+  
+  .promotion-banner__heading {
+    font-size: var(--mobile-heading-font-size);
+  }
+  
+  .countdown-timer__number {
+    font-size: var(--mobile-timer-font-size);
+  }
+  
+  .countdown-timer__separator {
+    font-size: var(--mobile-timer-font-size);
+  }
+} 
