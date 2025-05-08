@@ -1,0 +1,451 @@
+{%- liquid
+  assign section_id = 'brand-mission-' | append: section.id
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image
+  assign section_padding = section.settings.section_padding
+  assign section_padding_mobile = section.settings.section_padding_mobile
+  
+  assign heading = section.settings.heading
+  assign heading_color_desktop = section.settings.heading_color_desktop
+  assign heading_color_mobile = section.settings.heading_color_mobile | default: heading_color_desktop
+  assign heading_font_size_desktop = section.settings.heading_font_size_desktop
+  assign heading_font_size_mobile = section.settings.heading_font_size_mobile
+  assign heading_font_weight_desktop = section.settings.heading_font_weight_desktop
+  assign heading_font_weight_mobile = section.settings.heading_font_weight_mobile | default: heading_font_weight_desktop
+  assign heading_margin_bottom_desktop = section.settings.heading_margin_bottom_desktop
+  assign heading_margin_bottom_mobile = section.settings.heading_margin_bottom_mobile
+  
+  assign quote_text = section.settings.quote_text
+  assign text_color_desktop = section.settings.text_color_desktop
+  assign text_color_mobile = section.settings.text_color_mobile | default: text_color_desktop
+  assign text_font_size_desktop = section.settings.text_font_size_desktop
+  assign text_font_size_mobile = section.settings.text_font_size_mobile
+  assign text_font_weight_desktop = section.settings.text_font_weight_desktop
+  assign text_font_weight_mobile = section.settings.text_font_weight_mobile | default: text_font_weight_desktop
+  assign text_max_width_desktop = section.settings.text_max_width_desktop
+  assign text_max_width_mobile = section.settings.text_max_width_mobile
+  assign text_alignment = section.settings.text_alignment
+  
+  assign font_family = section.settings.font_family | default: "'Poppins', sans-serif"
+-%}
+
+{{ 'section-brand-mission.css' | asset_url | stylesheet_tag }}
+
+<div class="brand-mission-section" 
+  id="{{ section_id }}"
+  style="
+    {% if section_padding %}--section-padding: {{ section_padding }}px;{% endif %}
+    {% if section_padding_mobile %}--section-padding-mobile: {{ section_padding_mobile }}px;{% endif %}
+    
+    {% if heading_color_desktop %}--heading-color-desktop: {{ heading_color_desktop }};{% endif %}
+    {% if heading_color_mobile %}--heading-color-mobile: {{ heading_color_mobile }};{% endif %}
+    {% if heading_font_size_desktop %}--heading-font-size-desktop: {{ heading_font_size_desktop }}px;{% endif %}
+    {% if heading_font_size_mobile %}--heading-font-size-mobile: {{ heading_font_size_mobile }}px;{% endif %}
+    {% if heading_font_weight_desktop %}--heading-font-weight-desktop: {{ heading_font_weight_desktop }};{% endif %}
+    {% if heading_font_weight_mobile %}--heading-font-weight-mobile: {{ heading_font_weight_mobile }};{% endif %}
+    {% if heading_margin_bottom_desktop %}--heading-margin-bottom-desktop: {{ heading_margin_bottom_desktop }}px;{% endif %}
+    {% if heading_margin_bottom_mobile %}--heading-margin-bottom-mobile: {{ heading_margin_bottom_mobile }}px;{% endif %}
+    
+    {% if text_color_desktop %}--text-color-desktop: {{ text_color_desktop }};{% endif %}
+    {% if text_color_mobile %}--text-color-mobile: {{ text_color_mobile }};{% endif %}
+    {% if text_font_size_desktop %}--text-font-size-desktop: {{ text_font_size_desktop }}px;{% endif %}
+    {% if text_font_size_mobile %}--text-font-size-mobile: {{ text_font_size_mobile }}px;{% endif %}
+    {% if text_font_weight_desktop %}--text-font-weight-desktop: {{ text_font_weight_desktop }};{% endif %}
+    {% if text_font_weight_mobile %}--text-font-weight-mobile: {{ text_font_weight_mobile }};{% endif %}
+    {% if text_max_width_desktop %}--text-max-width-desktop: {{ text_max_width_desktop }}px;{% endif %}
+    {% if text_max_width_mobile %}--text-max-width-mobile: {{ text_max_width_mobile }}px;{% endif %}
+    
+    --font-family: {{ font_family }};
+  "
+>
+  <div class="brand-mission-container">
+    <div class="brand-mission-image-wrapper">
+      {%- if desktop_image != blank -%}
+        <img 
+          src="{{ desktop_image | img_url: '2000x', crop: 'center' }}" 
+          alt="{{ heading | escape }}"
+          loading="lazy"
+          class="brand-mission-image brand-mission-image-desktop"
+          width="2000"
+          height="577"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'brand-mission-image brand-mission-image-desktop placeholder' }}
+      {%- endif -%}
+      
+      {%- if mobile_image != blank -%}
+        <img 
+          src="{{ mobile_image | img_url: '800x', crop: 'center' }}" 
+          alt="{{ heading | escape }}"
+          loading="lazy"
+          class="brand-mission-image brand-mission-image-mobile"
+          width="800"
+          height="300"
+        >
+      {%- elsif desktop_image != blank -%}
+        <img 
+          src="{{ desktop_image | img_url: '800x', crop: 'center' }}" 
+          alt="{{ heading | escape }}"
+          loading="lazy"
+          class="brand-mission-image brand-mission-image-mobile"
+          width="800"
+          height="300"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'brand-mission-image brand-mission-image-mobile placeholder' }}
+      {%- endif -%}
+    </div>
+
+    <div class="brand-mission-content {{ text_alignment }}">
+      <div class="brand-mission-text-container">
+        {%- if heading != blank -%}
+          <h2 class="brand-mission-heading">{{ heading }}</h2>
+        {%- endif -%}
+
+        {%- if quote_text != blank -%}
+          <div class="brand-mission-quote">
+            <blockquote>{{ quote_text }}</blockquote>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Mission",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font family",
+      "options": [
+        {
+          "value": "'Poppins', sans-serif",
+          "label": "Poppins"
+        },
+        {
+          "value": "'Roboto', sans-serif",
+          "label": "Roboto"
+        },
+        {
+          "value": "'Open Sans', sans-serif",
+          "label": "Open Sans"
+        },
+        {
+          "value": "'Lato', sans-serif",
+          "label": "Lato"
+        },
+        {
+          "value": "'Montserrat', sans-serif",
+          "label": "Montserrat"
+        }
+      ],
+      "default": "'Poppins', sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image",
+      "info": "The focal point selected in the image picker will determine which part of the image is visible in the fixed 577px height container"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image (optional)",
+      "info": "If not provided, desktop image will be used. The focal point selected determines which part shows in the 300px height mobile container."
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding (desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding (mobile)",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Desktop Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "MY MEDIC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_desktop",
+      "label": "Heading color (desktop)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading font size (desktop)",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight_desktop",
+      "label": "Heading font weight (desktop)",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom_desktop",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin (desktop)",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Heading Settings"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_mobile",
+      "label": "Heading color (mobile)",
+      "info": "If not set, desktop color will be used"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 10,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size (mobile)",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight_mobile",
+      "label": "Heading font weight (mobile)",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "info": "If not set, desktop weight will be used"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin (mobile)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Desktop Text Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "Quote text",
+      "default": "<p>\"We are committed to excellence in all we do and to fostering a spirit of community. At MyMedic, we ensure that everything else falls into place by prioritizing top-quality products and caring for each other.\"</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color_desktop",
+      "label": "Text color (desktop)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_desktop",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size (desktop)",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "text_font_weight_desktop",
+      "label": "Text font weight (desktop)",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "text_max_width_desktop",
+      "min": 400,
+      "max": 1900,
+      "step": 50,
+      "unit": "px",
+      "label": "Text max width (desktop)",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Mobile Text Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color_mobile",
+      "label": "Text color (mobile)",
+      "info": "If not set, desktop color will be used"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size (mobile)",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_font_weight_mobile",
+      "label": "Text font weight (mobile)",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "info": "If not set, desktop weight will be used"
+    },
+    {
+      "type": "range",
+      "id": "text_max_width_mobile",
+      "min": 280,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Text max width (mobile)",
+      "default": 340
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Mission",
+      "settings": {
+        "heading": "MY MEDIC",
+        "quote_text": "<p>\"We are committed to excellence in all we do and to fostering a spirit of community. At MyMedic, we ensure that everything else falls into place by prioritizing top-quality products and caring for each other.\"</p>"
+      }
+    }
+  ]
+}
+{% endschema %} 

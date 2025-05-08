@@ -5,6 +5,7 @@
   position: relative;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
+  max-width: 100% !important;
 }
 
 .custom-collections__header {
@@ -184,7 +185,7 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  z-index: 10;
+  z-index: 0;
   border: none;
   transition: all 0.3s ease;
 }
@@ -292,7 +293,7 @@
 @media screen and (max-width: 749px) {
   .custom-collections-section {
     margin-top: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
   }
   
   .custom-collections__header {

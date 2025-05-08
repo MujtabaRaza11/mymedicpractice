@@ -1,0 +1,206 @@
+.brand-mission-section {
+  --section-padding: 60px;
+  --section-padding-mobile: 30px;
+  
+  --heading-color-desktop: #000000;
+  --heading-color-mobile: #000000;
+  --heading-font-size-desktop: 32px;
+  --heading-font-size-mobile: 24px;
+  --heading-font-weight-desktop: 700;
+  --heading-font-weight-mobile: 700;
+  --heading-margin-bottom-desktop: 20px;
+  --heading-margin-bottom-mobile: 15px;
+  
+  --text-color-desktop: #000000;
+  --text-color-mobile: #000000;
+  --text-font-size-desktop: 18px;
+  --text-font-size-mobile: 16px;
+  --text-font-weight-desktop: 400;
+  --text-font-weight-mobile: 400;
+  --text-max-width-desktop: 800px;
+  --text-max-width-mobile: 340px;
+  
+  --font-family: 'Poppins', sans-serif;
+  
+  padding: var(--section-padding) 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+/* Apply font family to all elements within the section */
+.brand-mission-section *,
+.brand-mission-section h2,
+.brand-mission-section p,
+.brand-mission-section blockquote {
+  font-family: var(--font-family);
+}
+
+.brand-mission-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.brand-mission-image-wrapper {
+  width: 100%;
+  height: auto; /* Allow natural height */
+  max-height: 100%; /* Maximum height constraint */
+  margin-bottom: 40px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.brand-mission-image {
+  width: 100%;
+  height: auto; /* Allow image to maintain aspect ratio */
+  max-height: 577px; /* Match wrapper's max-height */
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  box-sizing: border-box;
+}
+
+.brand-mission-image-mobile {
+  display: none; /* Hide on desktop */
+}
+
+.brand-mission-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.brand-mission-text-container {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.brand-mission-heading {
+  color: var(--heading-color-desktop);
+  font-size: var(--heading-font-size-desktop);
+  font-weight: var(--heading-font-weight-desktop);
+  margin: 0 0 var(--heading-margin-bottom-desktop);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+.brand-mission-quote {
+  color: var(--text-color-desktop);
+  font-size: var(--text-font-size-desktop);
+  font-weight: var(--text-font-weight-desktop);
+  line-height: 1.6;
+  margin: 0 auto;
+  width: 100%;
+  max-width: var(--text-max-width-desktop);
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-style: normal;
+}
+
+/* Reset all browser default blockquote styling */
+.brand-mission-quote blockquote {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  font-style: normal;
+  font-family: var(--font-family);
+  border: none;
+  border-left: none;
+  background: transparent;
+  quotes: none;
+  box-shadow: none;
+  text-indent: 0;
+}
+
+.brand-mission-quote blockquote:before,
+.brand-mission-quote blockquote:after {
+  content: '';
+  content: none;
+}
+
+.brand-mission-quote p {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-family: var(--font-family);
+  border: none;
+}
+
+/* Override any potential richtext styling from Shopify */
+.rte blockquote {
+  border-left: none !important; 
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.text-left .brand-mission-text-container {
+  text-align: left;
+}
+
+.text-center .brand-mission-text-container {
+  text-align: center;
+}
+
+.text-right .brand-mission-text-container {
+  text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+  .brand-mission-section {
+    padding: var(--section-padding-mobile) 0;
+  }
+  
+  .brand-mission-image-wrapper {
+    height: auto; /* Allow natural height on mobile */
+    max-height: none; /* Remove max-height constraint on mobile */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .brand-mission-image-desktop {
+    display: none; /* Hide desktop image on mobile */
+  }
+  
+  .brand-mission-image-mobile {
+    height: max-content;
+    object-position: center center;
+    object-fit: cover;
+    bottom: 0;
+    top: 0;
+    display: block;
+    position: relative;
+    max-width: 546px;
+    align-self: center;
+  }
+  
+  .brand-mission-heading {
+    color: var(--heading-color-mobile);
+    font-size: var(--heading-font-size-mobile);
+    font-weight: var(--heading-font-weight-mobile);
+    margin-bottom: var(--heading-margin-bottom-mobile);
+  }
+  
+  .brand-mission-quote {
+    color: var(--text-color-mobile);
+    font-size: var(--text-font-size-mobile);
+    font-weight: var(--text-font-weight-mobile);
+    max-width: var(--text-max-width-mobile);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .brand-mission-section {
+    padding: calc(var(--section-padding) * 0.75) 0;
+  }
+} 
