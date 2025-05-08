@@ -330,14 +330,14 @@
   {% else %}
     <!-- Regular desktop navigation -->
     <ul>
-      {% for link in section.settings.menu.links %}
-        <li x-data="{ menuOpen: false, activeSubMenu: null }" @click.outside="menuOpen = false; activeSubMenu = null">
-          {% if link.links != blank %}
-            <button
-              @click="menuOpen = !menuOpen"
-              :class="{ 'menu-open': menuOpen }"
-              class="menu-toggle"
-            >
+  {% for link in section.settings.menu.links %}
+    <li x-data="{ menuOpen: false, activeSubMenu: null }" @click.outside="menuOpen = false; activeSubMenu = null">
+      {% if link.links != blank %}
+        <button
+          @click="menuOpen = !menuOpen"
+          :class="{ 'menu-open': menuOpen }"
+          class="menu-toggle"
+        >
               {% for block in section.blocks %}
                 {% if block.type == 'menu_icon' and block.settings.menu_title == link.title %}
                   {% if block.settings.icon %}
@@ -346,26 +346,26 @@
                   {% break %}
                 {% endif %}
               {% endfor %}
-              {{- link.title | escape -}}
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </button>
-            <ul
-              x-show="menuOpen"
-              class="nav-{{ nav_style }} color-{{ section.settings.menu_color_scheme }} gradient"
-              x-transition
-              role="list"
-              x-cloak
-            >
-              {%- for childlink in link.links -%}
-                <li>
-                  {% if childlink.links == blank %}
-                    <a
-                      href="{{ childlink.url }}"
-                      class="header__menu-item"
-                      {% if childlink.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
+          {{- link.title | escape -}}
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </button>
+        <ul
+          x-show="menuOpen"
+          class="nav-{{ nav_style }} color-{{ section.settings.menu_color_scheme }} gradient"
+          x-transition
+          role="list"
+          x-cloak
+        >
+          {%- for childlink in link.links -%}
+            <li>
+              {% if childlink.links == blank %}
+                <a
+                  href="{{ childlink.url }}"
+                  class="header__menu-item"
+                  {% if childlink.current %}
+                    aria-current="page"
+                  {% endif %}
+                >
                       {% for block in section.blocks %}
                         {% if block.type == 'menu_icon' and block.settings.menu_title == childlink.title %}
                           {% if block.settings.icon %}
@@ -374,14 +374,14 @@
                           {% break %}
                         {% endif %}
                       {% endfor %}
-                      {{ childlink.title | escape }}
-                    </a>
-                  {% else %}
-                    <button
-                      @click="activeSubMenu = (activeSubMenu === '{{ childlink.title | escape }}' ? null : '{{ childlink.title | escape }}')"
-                      :class="{ 'menu-open': activeSubMenu === '{{ childlink.title | escape }}' }"
-                      class="menu-toggle"
-                    >
+                  {{ childlink.title | escape }}
+                </a>
+              {% else %}
+                <button
+                  @click="activeSubMenu = (activeSubMenu === '{{ childlink.title | escape }}' ? null : '{{ childlink.title | escape }}')"
+                  :class="{ 'menu-open': activeSubMenu === '{{ childlink.title | escape }}' }"
+                  class="menu-toggle"
+                >
                       {% for block in section.blocks %}
                         {% if block.type == 'menu_icon' and block.settings.menu_title == childlink.title %}
                           {% if block.settings.icon %}
@@ -390,25 +390,25 @@
                           {% break %}
                         {% endif %}
                       {% endfor %}
-                      {{- childlink.title | escape -}}
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
-                    </button>
-                    <ul
-                      x-show="activeSubMenu === '{{ childlink.title | escape }}'"
-                      class="nav-dropdown_child"
-                      x-transition
-                      role="list"
-                      x-cloak
-                    >
-                      {%- for grandchildlink in childlink.links -%}
-                        <li>
-                          <a
-                            href="{{ grandchildlink.url }}"
-                            class="header__menu-item"
-                            {% if grandchildlink.current %}
-                              aria-current="page"
-                            {% endif %}
-                          >
+                  {{- childlink.title | escape -}}
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </button>
+                <ul
+                  x-show="activeSubMenu === '{{ childlink.title | escape }}'"
+                  class="nav-dropdown_child"
+                  x-transition
+                  role="list"
+                  x-cloak
+                >
+                  {%- for grandchildlink in childlink.links -%}
+                    <li>
+                      <a
+                        href="{{ grandchildlink.url }}"
+                        class="header__menu-item"
+                        {% if grandchildlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
                             {% for block in section.blocks %}
                               {% if block.type == 'menu_icon' and block.settings.menu_title == grandchildlink.title %}
                                 {% if block.settings.icon %}
@@ -417,22 +417,22 @@
                                 {% break %}
                               {% endif %}
                             {% endfor %}
-                            {{ grandchildlink.title | escape }}
-                          </a>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                  {% endif %}
-                </li>
-              {%- endfor -%}
-            </ul>
-          {% else %}
-            <a
-              href="{{ link.url }}"
-              {% if link.current %}
-                aria-current="page"
+                        {{ grandchildlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
               {% endif %}
-            >
+            </li>
+          {%- endfor -%}
+        </ul>
+      {% else %}
+        <a
+          href="{{ link.url }}"
+          {% if link.current %}
+            aria-current="page"
+          {% endif %}
+        >
               {% for block in section.blocks %}
                 {% if block.type == 'menu_icon' and block.settings.menu_title == link.title %}
                   {% if block.settings.icon %}
@@ -441,11 +441,11 @@
                   {% break %}
                 {% endif %}
               {% endfor %}
-              {{- link.title | escape -}}
-            </a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+          {{- link.title | escape -}}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
   {% endif %}
 </div>

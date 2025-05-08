@@ -1,0 +1,291 @@
+.top-selling-section {
+  --section-padding: 24px;
+  --section-background: #FFFFFF;
+  --heading-color: #E21F26;
+  --heading-font-size: 28px;
+  --heading-font-size-mobile: 20px;
+  --heading-font-weight: 700;
+  --heading-margin-bottom: 20px;
+  --font-family: 'Poppins', sans-serif;
+  
+  --sale-badge-bg-color: #E21F26;
+  --sale-badge-text-color: #FFFFFF;
+  --new-badge-bg-color: #E21F26;
+  --new-badge-text-color: #FFFFFF;
+  
+  --product-title-color: #000000;
+  --product-title-font-size: 16px;
+  --product-title-font-size-mobile: 14px;
+  --product-title-font-weight: 700;
+  
+  --sale-price-color: #FFFFFF;
+  --sale-price-bg-color: #E21F26;
+  --regular-price-color: #808080;
+  --price-font-size: 16px;
+  --price-font-size-mobile: 14px;
+  
+  --stock-text-color: #808080;
+  --stock-font-size: 14px;
+  --stock-font-size-mobile: 12px;
+  
+  --button-text-color: #E21F26;
+  --button-border-color: #E21F26;
+  --button-font-size: 14px;
+  --button-font-size-mobile: 12px;
+  
+  --card-gap: 20px;
+  --card-background: #FFFFFF;
+  --card-padding: 0px;
+  --card-border-radius: 0px;
+  
+  padding: var(--section-padding);
+  background-color: var(--section-background);
+  font-family: var(--font-family);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Apply font family to all elements */
+.top-selling-section *,
+.top-selling-container,
+.top-selling-heading,
+.top-selling-grid,
+.product-card,
+.product-title,
+.product-price,
+.sale-price,
+.regular-price,
+.product-stock,
+.shop-now-button {
+  font-family: var(--font-family);
+}
+
+.top-selling-container {
+  max-width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.top-selling-flex-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.top-selling-heading-wrapper {
+  width: 100%;
+}
+
+.top-selling-heading {
+  color: var(--heading-color);
+  font-size: var(--heading-font-size);
+  font-weight: var(--heading-font-weight);
+  margin: 0 0 var(--heading-margin-bottom) 0;
+  padding: 0;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--heading-color);
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.top-selling-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--card-gap);
+  width: 100%;
+}
+
+.product-card {
+  background-color: var(--card-background);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-size: 12px;
+  padding: 2px 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.sale-badge {
+  background-color: var(--sale-badge-bg-color);
+  color: var(--sale-badge-text-color);
+}
+
+.new-badge {
+  background-color: var(--new-badge-bg-color);
+  color: var(--new-badge-text-color);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-title {
+  color: var(--product-title-color);
+  font-size: var(--product-title-font-size);
+  font-weight: var(--product-title-font-weight);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+
+.product-price {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sale-price {
+  color: var(--sale-price-color);
+  background-color: var(--sale-price-bg-color);
+  font-size: var(--price-font-size);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.regular-price {
+  color: var(--regular-price-color);
+  font-size: calc(var(--price-font-size) - 2px);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.product-stock {
+  color: var(--stock-text-color);
+  font-size: var(--stock-font-size);
+  margin-bottom: 10px;
+}
+
+.shop-now-button {
+  color: var(--button-text-color);
+  font-size: var(--button-font-size);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--button-border-color);
+  padding-top: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.arrow-icon {
+  font-size: calc(var(--button-font-size) * 1.5);
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.shop-now-button:hover .arrow-icon {
+  transform: translateX(3px);
+}
+
+@media screen and (min-width: 1400px) {
+  .top-selling-container {
+    max-width: 1400px;
+  }
+  
+  .top-selling-flex-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .top-selling-heading-wrapper {
+    width: 227px;
+    flex-shrink: 0;
+    padding-right: 20px;
+  }
+  
+  .top-selling-grid {
+    flex: 1;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .top-selling-heading {
+    margin-bottom: 0;
+    border-bottom: none;
+    border-right: 2px solid var(--heading-color);
+    padding-bottom: 0;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
+  .top-selling-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .top-selling-section {
+    padding: calc(var(--section-padding) * 0.75);
+  }
+  
+  .top-selling-heading {
+    font-size: var(--heading-font-size-mobile);
+    margin-bottom: calc(var(--heading-margin-bottom) * 0.75);
+  }
+  
+  .top-selling-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--card-gap) * 0.75);
+  }
+  
+  .product-title {
+    font-size: var(--product-title-font-size-mobile);
+  }
+  
+  .sale-price {
+    font-size: var(--price-font-size-mobile);
+  }
+  
+  .regular-price {
+    font-size: calc(var(--price-font-size-mobile) - 2px);
+  }
+  
+  .product-stock {
+    font-size: var(--stock-font-size-mobile);
+  }
+  
+  .shop-now-button {
+    font-size: var(--button-font-size-mobile);
+  }
+  
+  .arrow-icon {
+    font-size: calc(var(--button-font-size-mobile) * 1.5);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .top-selling-section {
+    padding: calc(var(--section-padding) * 0.5);
+  }
+  
+  .top-selling-grid {
+    gap: calc(var(--card-gap) * 0.5);
+  }
+} 

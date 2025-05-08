@@ -29,9 +29,9 @@
 </div>
 
 <style>
-  .icon-bar-section {
+  {% comment %} .icon-bar-section {
     padding: 20px 0;
-  }
+  } {% endcomment %}
 
   .icon-bar-container {
     display: flex;
@@ -58,10 +58,12 @@
 
   .icon-bar-text {
     margin: 0;
-    font-size: 2rem; /* Keep increased font size */
+    font-size: 32px; /* Keep increased font size */
     white-space: nowrap; /* Prevent text wrapping */
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
   }
 
   .icon-bar-divider {
@@ -72,9 +74,8 @@
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .icon-bar-container {
-      justify-content: flex-start; /* Align to start for scrolling */
+      justify-content: center; /* Align to start for scrolling */
       overflow-x: auto; /* Enable horizontal scrolling */
-      padding-bottom: 10px; /* Optional: space for scrollbar */
       -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       scrollbar-width: none; /* Hide scrollbar Firefox */
     }
@@ -88,6 +89,7 @@
     }
     .icon-bar-text {
       /* white-space: normal; Removed */
+      font-size: 24px;
     }
   }
 
