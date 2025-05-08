@@ -1,0 +1,78 @@
+{
+  "name": "Main Content",
+  "type": "custom.main-content",
+  "sections": {
+    "hero_banner": {
+      "type": "home-page-banner",
+      "settings": {
+        "background_type": "image",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "top_text": "SAVE UP TO 50% OFF",
+        "heading": "Summer Sale",
+        "subheading": "Shop our latest collection of premium products",
+        "button_text": "SHOP NOW",
+        "button_link": "shopify://collections/all",
+        "show_endorsement": false
+      }
+    },
+    "dynamic_content": {
+      "type": "dynamic-content",
+      "blocks": {
+        "image_text_block": {
+          "type": "image_with_text",
+          "settings": {
+            "heading": "Image with Text",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post.</p>",
+            "button_text": "Learn More",
+            "button_link": "#"
+          }
+        },
+        "collection_block": {
+          "type": "collection_preview",
+          "settings": {
+            "heading": "Featured Collection",
+            "product_limit": 4
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block",
+        "collection_block"
+      ]
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "blocks": {
+        "product1": {
+          "type": "product_card",
+          "settings": {}
+        },
+        "product2": {
+          "type": "product_card",
+          "settings": {}
+        },
+        "product3": {
+          "type": "product_card",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product1",
+        "product2",
+        "product3"
+      ],
+      "settings": {
+        "title": "Featured Products",
+        "collection": "",
+        "products_to_show": 3
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "dynamic_content",
+    "featured_products"
+  ]
+} 

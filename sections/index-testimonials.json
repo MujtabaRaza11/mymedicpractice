@@ -1,0 +1,19 @@
+{
+  "name": "Testimonials Group",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Testimonials Group"
+    }
+  ],
+  "templates": ["index"],
+  "sections": {
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
+    }
+  }
+} 
