@@ -1,5 +1,6 @@
 {
   "name": "Testimonials Group",
+  "type": "custom.testimonials-group",
   "tag": "section",
   "class": "section",
   "settings": [],
@@ -15,5 +16,6 @@
       "type": "testimonials",
       "settings": {}
     }
-  }
+  },
+  "order": ["testimonials"]
 } 

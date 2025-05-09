@@ -158,23 +158,16 @@
             }
           },
           "brand_information_mfQiAe": {
-            "type": "brand_information",
+            "type": "link_list",
             "settings": {
-              "show_social": false
-            }
-          },
-          "image_ignBDg": {
-            "type": "image",
-            "settings": {
-              "image_width": 65,
-              "alignment": "center"
+              "heading": "Company Info",
+              "menu": "footer"
             }
           }
         },
         "block_order": [
           "link_list_tRGQXg",
-          "brand_information_mfQiAe",
-          "image_ignBDg"
+          "brand_information_mfQiAe"
         ],
         "settings": {
           "color_scheme": "",
