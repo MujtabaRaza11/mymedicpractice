@@ -71,10 +71,31 @@
         "heading": "Collections",
         "description": "<p>Explore our top-rated emergency kits, designed with your safety in mind. From comprehensive first aid solutions to specialized gear for any scenario, our products are trusted by professionals and adventurers alike. Be prepared for anything with MyMedic.</p>"
       }
+    },
+    "1773293940e3c9bf54": {
+      "type": "apps",
+      "blocks": {
+        "growthday_quizzes_test_quiz_section_Qa4RLp": {
+          "type": "shopify://apps/growthday-quizzes-test/blocks/quiz_section/019ce055-20a4-70cd-85b4-a30229bf7dfe",
+          "settings": {
+            "metaobject_quiz_id": "",
+            "app_quiz_id": "",
+            "quiz_theme_css": "",
+            "proxy_path": "/apps/quiz-flow",
+            "klaviyo_public_api_key": "",
+            "klaviyo_list_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "growthday_quizzes_test_quiz_section_Qa4RLp"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "fist-of-collections",
-    "custom_collections_QMCRL4"
+    "custom_collections_QMCRL4",
+    "1773293940e3c9bf54"
   ]
 }
