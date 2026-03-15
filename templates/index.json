@@ -78,8 +78,8 @@
         "growthday_quizzes_test_quiz_section_Qa4RLp": {
           "type": "shopify://apps/growthday-quizzes-test/blocks/quiz_section/019ce055-20a4-70cd-85b4-a30229bf7dfe",
           "settings": {
-            "metaobject_quiz_id": "",
-            "app_quiz_id": "",
+            "metaobject_quiz_id": "101",
+            "app_quiz_id": "e1347410-58da-4872-a66f-77efc9d7a0e4",
             "quiz_theme_css": "",
             "proxy_path": "/apps/quiz-flow",
             "klaviyo_public_api_key": "",
